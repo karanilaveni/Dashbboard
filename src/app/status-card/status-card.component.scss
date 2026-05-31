@@ -1,0 +1,51 @@
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.status-card {
+  padding: 20px;
+  border-radius: 12px;
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  cursor: pointer;
+  transition: 0.2s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.status-card:hover {
+  transform: translateY(-3px);
+}
+
+.status-card h3 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.status-card p {
+  margin: 10px 0 0;
+  font-size: 26px;
+  font-weight: bold;
+}
+
+.selected {
+  border: 2px solid #333;
+}
+
+.active-card {
+  background-color: #d4edda;
+}
+
+.inactive-card {
+  background-color: #f8d7da;
+}
+
+.pending-card {
+  background-color: #fff3cd;
+}
+
+.all-card {
+  background-color: #e2e3e5;
+}

@@ -1,0 +1,61 @@
+<div class="dashboard-container">
+  <div>
+    <app-status-card
+      [activeCount]="activeCount"
+      [inactiveCount]="inactiveCount"
+      [pendingCount]="pendingCount"
+      [selectedStatus]="selectedStatus"
+      (statusSelected)="filterByStatus($event)"
+    ></app-status-card>
+  </div>
+  <h2>Records Dashboard</h2>
+
+  <div class="filters">
+    <input
+      type="text"
+      placeholder="Search by name, email, or role"
+      [(ngModel)]="searchText"
+    />
+
+    <select [(ngModel)]="selectedStatus">
+      <option value="All">All Status</option>
+      <option value="Active">Active</option>
+      <option value="Inactive">Inactive</option>
+      <option value="Pending">Pending</option>
+    </select>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th (click)="sortBy('id')">ID {{ getSortIcon("id") }}</th>
+        <th (click)="sortBy('name')">Name {{ getSortIcon("name") }}</th>
+        <th (click)="sortBy('email')">Email {{ getSortIcon("email") }}</th>
+        <th (click)="sortBy('status')">Status {{ getSortIcon("status") }}</th>
+        <th (click)="sortBy('role')">Role {{ getSortIcon("role") }}</th>
+        <th (click)="sortBy('createdDate')">
+          Created Date {{ getSortIcon("createdDate") }}
+        </th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let record of filteredRecords">
+        <td>{{ record.id }}</td>
+        <td>{{ record.name }}</td>
+        <td>{{ record.email }}</td>
+        <td>
+          <span class="status" [ngClass]="record.status.toLowerCase()">
+            {{ record.status }}
+          </span>
+        </td>
+        <td>{{ record.role }}</td>
+        <td>{{ record.createdDate }}</td>
+      </tr>
+
+      <tr *ngIf="filteredRecords.length === 0">
+        <td colspan="6" class="no-records">No records found</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
