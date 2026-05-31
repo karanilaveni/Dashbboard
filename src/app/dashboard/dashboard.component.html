@@ -1,61 +1,53 @@
-<div class="dashboard-container">
-  <div>
-    <app-status-card
-      [activeCount]="activeCount"
-      [inactiveCount]="inactiveCount"
-      [pendingCount]="pendingCount"
-      [selectedStatus]="selectedStatus"
-      (statusSelected)="filterByStatus($event)"
-    ></app-status-card>
-  </div>
-  <h2>Records Dashboard</h2>
+<div class="portfolio-page">
+  <section class="section welcome-section">
+    <div class="content fade-in">
+      <p class="small-text">Welcome</p>
+      <h1>Welcome to my portfolio</h1>
+      <p class="subtitle">Scroll down to know more about me</p>
+      <div class="scroll-indicator">↓</div>
+    </div>
+  </section>
 
-  <div class="filters">
-    <input
-      type="text"
-      placeholder="Search by name, email, or role"
-      [(ngModel)]="searchText"
-    />
+  <section class="section name-section">
+    <div class="content slide-left">
+      <p class="small-text">About Me</p>
+      <h1>
+        I am <span>{{ name }}</span>
+      </h1>
+    </div>
+  </section>
 
-    <select [(ngModel)]="selectedStatus">
-      <option value="All">All Status</option>
-      <option value="Active">Active</option>
-      <option value="Inactive">Inactive</option>
-      <option value="Pending">Pending</option>
-    </select>
-  </div>
+  <section class="section developer-section">
+    <div class="content slide-right">
+      <p class="small-text">What I Do</p>
+      <h1>I am a</h1>
+      <h2>{{ title }}</h2>
+      <p class="description">
+        I build responsive user interfaces, backend APIs, database-driven
+        applications, and scalable full-stack solutions.
+      </p>
 
-  <table>
-    <thead>
-      <tr>
-        <th (click)="sortBy('id')">ID {{ getSortIcon("id") }}</th>
-        <th (click)="sortBy('name')">Name {{ getSortIcon("name") }}</th>
-        <th (click)="sortBy('email')">Email {{ getSortIcon("email") }}</th>
-        <th (click)="sortBy('status')">Status {{ getSortIcon("status") }}</th>
-        <th (click)="sortBy('role')">Role {{ getSortIcon("role") }}</th>
-        <th (click)="sortBy('createdDate')">
-          Created Date {{ getSortIcon("createdDate") }}
-        </th>
-      </tr>
-    </thead>
+      <div class="skills">
+        <span>Angular</span>
+        <span>Java</span>
+        <span>Spring Boot</span>
+        <span>React</span>
+        <span>AWS</span>
+      </div>
+    </div>
+  </section>
 
-    <tbody>
-      <tr *ngFor="let record of filteredRecords">
-        <td>{{ record.id }}</td>
-        <td>{{ record.name }}</td>
-        <td>{{ record.email }}</td>
-        <td>
-          <span class="status" [ngClass]="record.status.toLowerCase()">
-            {{ record.status }}
-          </span>
-        </td>
-        <td>{{ record.role }}</td>
-        <td>{{ record.createdDate }}</td>
-      </tr>
+  <section class="section tampa-section">
+    <div class="overlay"></div>
 
-      <tr *ngIf="filteredRecords.length === 0">
-        <td colspan="6" class="no-records">No records found</td>
-      </tr>
-    </tbody>
-  </table>
+    <div class="content tampa-content">
+      <p class="small-text">Location</p>
+      <h1>I am in</h1>
+      <h2>{{ location }}</h2>
+      <p class="description">
+        Based in Tampa, Florida, close to beautiful beaches, modern tech
+        opportunities, and a growing developer community.
+      </p>
+    </div>
+  </section>
 </div>
